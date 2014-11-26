@@ -116,7 +116,7 @@ Protocols.ccodes.xb["BBN"] = "\027[48;5;052m"
 Protocols.ccodes.xb["Bbn"] = "\027[48;5;094m"
 
 --remember to add any new Protocols codes made for .x or .xb into the .s table with what you want it swapped with
---for when only ASCI support
+--for when only ANSI support
 
 --differnce between xterm and ansi for swaps and removals when no xterm support
 Protocols.ccodes.s = {}
