@@ -24,7 +24,7 @@
 2.add protocols.lua to the required files in loader.lua
 3.modify both player.lua and client.lua in obj folder so the calls to Client:send go to Protocols:convert instead with (client, msg, i, j) aug
 4.add client.options.XTERM and client.options.ANSI with the default you want set to 1(you can easily allow for the player to pick which they want)
-5.add colors to mud
+5.add colors to mud 
 ]]
 
 module("Protocols", package.seeall)
