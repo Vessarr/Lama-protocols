@@ -183,7 +183,7 @@ Protocols.mcodes["MM3"] = {["nm"] = "quietgrave", ["sfn"] = "sounds/", ["cfn"] =
 
 --call before sending a msg to a client to add and remove Protocol codes as needed
 function Protocols:convert(client, msg, i, j)
-	if client.options.LMP == 1 then--does the client support lama music protocol
+	if client.options.LFP == 1 then--does the client support lama file protocol
 		for i,v in pairs(Protocols.mcodes) do
 			if string.find(msg, "{M" .. Protocols.esc .. i .. "]") then
 				msg = string.gsub(msg, "{M" .. Protocols.esc .. i .. "]", "")
@@ -193,7 +193,7 @@ function Protocols:convert(client, msg, i, j)
 				end
 			end
 		end
-	else--no lama music protocol support remove music codes
+	else--no lama file protocol support remove music codes
 	msg = Protocols:stripm(msg)
 	end
 	return client:send(msg,i,j)--msg is directly sent to clients send function
