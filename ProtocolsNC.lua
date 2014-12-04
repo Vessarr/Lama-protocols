@@ -173,7 +173,7 @@ Protocols.fc["$SYA"] = "\253"
 Protocols.fc["$SLT"] = "\254"
 Protocols.fc["$SYD"] = "\255"
 
---sample music and sound codes
+--sample music and sound code samples. must have the midi files for these to work.
 Protocols.mcodes = {}
 Protocols.mcodes["STOP"] = {["nm"] = "nothing", ["sfn"] = "sounds/", ["cfn"] = "sounds/", ["ext"] = ".mid"  }--stops current midi file thats playing
 Protocols.mcodes["ME1"] = {["nm"] = "seal1", ["sfn"] = "sounds/", ["cfn"] = "sounds/", ["ext"] = ".mid"  }
