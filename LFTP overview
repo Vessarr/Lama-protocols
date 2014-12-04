@@ -1,0 +1,36 @@
+Sending files
+  1. read bytes of file into 1000 character max blocks, into a data table.
+  2. encode all control characters of each block except for NUL.
+  3. encode NUL by matching all remaining control characters which should now only be NUL.
+  4. encode all non standered characters.
+  5. send file start tag to start client data capture with proper augments for if you want it to play the file or if its a pluggin or just a file.
+  6. send each block of file with a 0.02 second delay between to ensure proper data capture.
+  7. insert a newline in between each block if send function doesnt do it automaticly, to mark data blocks for client.
+  8. send file end tag.
+  9. (optional) keep record of files sent to ensure you dont resend the same midi/wav every time somone enters a sound point.
+
+Sending plugin files
+  1. read bytes of file into 1000 character blocks into a data table.
+  2. encode all newlines and tabs.
+  (optional) if pluggin contains a file end tag same as the end tag used by the lama file protocol pluggin it must be encoded or risks being removed.
+  3. send file start tag to start client data capture.
+  4. send each block of file with a 0.02 second delay between to ensure proper data capture.
+  5. insert a newline inbetween each block to mark data blocks for client.
+  6. send file end tag.
+
+File start tag
+  {file[client file location[name[file extension[to do}
+
+  -client file location is the location that you want the file to go client side(be sure its a standard mushclient folder or make the folder before sending anything to it).
+  -name is the name of the file being sent.
+  -file extension is the extension of the file being send.
+  -to do is what to do with the file when recived (y = mid or wav file, n = just a file do nothing, pl = pluggin file).
+
+  Example : {file[world/plugin/[lama_file_protocol[.xml[pl}
+  sending the lama file protocol plugin
+  Example : {file[sounds/[nothing[.mid[y}
+  sending the midi file nothing that will be played
+  TIP:sending a midi file with nothing in it but the basic midi format data stops a currently playing midi file!
+
+File end tag
+  {/file}
