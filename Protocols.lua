@@ -375,8 +375,6 @@ function Protocols:sendfile(sfl,cfn,name,ext,pl,player)
 	file:close(file)
 	local wait = 0.01
 	if #data >= 100 then wait = 0.03 elseif #data >= 20 then wait = 0.02 end
-	print(wait)
-
 	if pl ~= "y" then
 		player:sendMessage("~GRSending file~wh", MessageMode.GENERAL)
 	end
