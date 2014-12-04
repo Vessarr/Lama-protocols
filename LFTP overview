@@ -1,3 +1,4 @@
+
 Sending files
   1. read bytes of file into 1000 character max blocks, into a data table.
   2. encode all control characters of each block except for NUL.
@@ -5,6 +6,7 @@ Sending files
   4. encode all non standered characters.
   5. send file start tag to start client data capture with proper augments for if you want it to play the file or if its a pluggin or just a file.
   6. send each block of file with a 0.02 second delay between to ensure proper data capture.
+  Note: Requires socket.lua for a sleep function to add delay. If not using socket.lua you must you another sleep/wait function.
   7. insert a newline in between each block if send function doesnt do it automaticly, to mark data blocks for client.
   8. send file end tag.
   9. (optional) keep record of files sent to ensure you dont resend the same midi/wav every time somone enters a sound point.
@@ -24,7 +26,7 @@ File start tag
   -client file location is the location that you want the file to go client side(be sure its a standard mushclient folder or make the folder before sending anything to it).
   -name is the name of the file being sent.
   -file extension is the extension of the file being send.
-  -to do is what to do with the file when recived (y = mid or wav file, n = just a file do nothing, pl = pluggin file).
+  -to do is what to do with the file when recived (y = mid or wav file to play, n = just a file do nothing, pl = pluggin file).
 
   Example : {file[world/plugin/[lama_file_protocol[.xml[pl}
   sending the lama file protocol plugin
