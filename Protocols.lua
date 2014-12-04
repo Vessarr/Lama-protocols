@@ -68,7 +68,6 @@ Protocols.ccodes.ab["BMR"] = "\027[1;45m"
 Protocols.ccodes.ab["BCY"] = "\027[1;46m"
 Protocols.ccodes.ab["BWH"] = "\027[1;47m"
 
-
 --xterm Protocols codes
 Protocols.ccodes.x	= {}
 Protocols.ccodes.x["BK"] = "\027[38;5;000m"
@@ -281,6 +280,7 @@ Protocols.mcodes["ME1"] = {["nm"] = "seal1", ["sfn"] = "sounds/", ["cfn"] = "sou
 Protocols.mcodes["MM1"] = {["nm"] = "uniden", ["sfn"] = "sounds/", ["cfn"] = "sounds/", ["ext"] = ".mid"  }
 Protocols.mcodes["MM2"] = {["nm"] = "minute_waltz", ["sfn"] = "sounds/", ["cfn"] = "sounds/", ["ext"] = ".mid"  }
 Protocols.mcodes["MM3"] = {["nm"] = "quietgrave", ["sfn"] = "sounds/", ["cfn"] = "sounds/", ["ext"] = ".mid"  }
+Protocols.mcodes["MM4"] = {["nm"] = "rachmaninov3", ["sfn"] = "sounds/", ["cfn"] = "sounds/", ["ext"] = ".mid"  }
 
 --call before sending a msg to a client to add and remove Protocol codes as needed
 function Protocols:convert(client, msg, i, j)
@@ -373,13 +373,16 @@ function Protocols:sendfile(sfl,cfn,name,ext,pl,player)
 		end
 	until not d
 	file:close(file)
+	local wait = 0.01
+	if #data >= 100 then wait = 0.03 elseif #data >= 20 then wait = 0.02 end
+	print(wait)
 
 	if pl ~= "y" then
 		player:sendMessage("~GRSending file~wh", MessageMode.GENERAL)
 	end
 	player:sendMessage("{file[" .. cfn .. "[" .. name .. "[" .. ext .. "[" .. pl .. "}", MessageMode.GENERAL)
 	for t,v in ipairs(data) do
-		Protocols:sleep(0.02)
+		Protocols:sleep(wait)
 		local msg = ("\n" .. v)
 		player.client:send(msg,i,j)--skip protocol strip just incase the file contains codes
 	end
